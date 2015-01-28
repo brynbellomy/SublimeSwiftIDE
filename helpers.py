@@ -2,12 +2,9 @@ import sublime
 import subprocess
 
 
-# class Bryn:
-#     @staticmethod
 def allText(view):
     return view.substr(sublime.Region(0, view.size()))
 
-#@staticmethod
 def selText(view):
     text = []
     for region in view.sel():
@@ -16,13 +13,11 @@ def selText(view):
         text.append(view.substr(region))
     return "".join(text)
 
-#@staticmethod
 def getText(view):
     text = Bryn.selText(view)
     if len(text) > 0:
         return text
     return Bryn.allText(view)
-
 
 def runProcess(cmd, args = [], stdin="", cwd = None, env = None):
     if not type(args) is list:
@@ -34,12 +29,9 @@ def runProcess(cmd, args = [], stdin="", cwd = None, env = None):
     output = byteOutput.decode('utf8')
     return output
 
-
-# @classmethod
 def SortValueForRegion(region):
     return region.begin()
 
-# @classmethod
 def RegionToFullLine(view):
     def fn(region):
         begin = view.line(region).begin()
