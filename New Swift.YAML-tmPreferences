@@ -1,0 +1,14 @@
+
+
+name: New Swift preferences
+scope: source.swift
+settings:
+  shellVariables:
+  - {name: TM_COMMENT_START, value: '// '}
+  - {name: TM_COMMENT_START_2, value: '/* '}
+  - {name: TM_COMMENT_END_2, value: ' */'}
+  indentParens: true
+  decreaseIndentPattern: "^(.*\\*/)?\\s*\\}[;\\s]*$"
+  increaseIndentPattern: "^(.*\\{[^\\}\"']*|/\\*[^(\\*/)])$"
+
+uuid: 402949b5-b0d6-4f6f-aef9-c3e6c1e77724

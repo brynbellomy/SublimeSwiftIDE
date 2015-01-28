@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>New Swift preferences</string>
+	<key>scope</key>
+	<string>source.swift</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^(.*\*/)?\s*\}[;\s]*$</string>
+		<key>increaseIndentPattern</key>
+		<string>^(.*\{[^\}"']*|/\*[^(\*/)])$</string>
+		<key>indentParens</key>
+		<true/>
+		<key>shellVariables</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START</string>
+				<key>value</key>
+				<string>// </string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_START_2</string>
+				<key>value</key>
+				<string>/* </string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>TM_COMMENT_END_2</string>
+				<key>value</key>
+				<string> */</string>
+			</dict>
+		</array>
+	</dict>
+	<key>uuid</key>
+	<string>402949b5-b0d6-4f6f-aef9-c3e6c1e77724</string>
+</dict>
+</plist>

@@ -1,0 +1,3 @@
+name: Symbol List
+scope: meta.identifier.function
+settings: {showInSymbolList: 1}

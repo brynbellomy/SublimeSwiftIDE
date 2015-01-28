@@ -1,0 +1,4 @@
+[
+    { "caption": "Parse Swift Syntax", "command": "swift_parse_syntax" },
+    { "caption": "Parse Swift Structure", "command": "swift_parse_structure" }
+]
