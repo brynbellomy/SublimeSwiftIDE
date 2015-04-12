@@ -482,9 +482,20 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#builtin-uikit-types</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#builtin-spritekit-types</string>
 				</dict>
 			</array>
+		</dict>
+		<key>builtin-uikit-types</key>
+		<dict>
+			<key>match</key>
+			<string>\bUI(TableView(Controller|Delegate|DataSource)?)\b</string>
+			<key>name</key>
+			<string>support.type.built-in.uikit.swift</string>
 		</dict>
 		<key>builtin-values</key>
 		<dict>
@@ -753,6 +764,10 @@
 					<string>#access-control-modifiers</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#scoped-variable-storage-modifiers</string>
+				</dict>
+				<dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -825,6 +840,10 @@
 				<dict>
 					<key>include</key>
 					<string>#variable-dot-access</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#stuff-that-needs-a-home</string>
 				</dict>
 			</array>
 		</dict>
@@ -1451,6 +1470,10 @@
 					<string>#access-control-modifiers</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#scoped-variable-storage-modifiers</string>
+				</dict>
+				<dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -1698,7 +1721,19 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#type-name</string>
+					<string>#shorthand-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tuple-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#protocol-composition-type</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#generic-type</string>
 				</dict>
 			</array>
 		</dict>
@@ -2437,6 +2472,10 @@
 					<key>include</key>
 					<string>#type-name</string>
 				</dict>
+				<dict>
+					<key>include</key>
+					<string>#simple-type-name</string>
+				</dict>
 			</array>
 		</dict>
 		<key>nil-coalescing-operator</key>
@@ -2627,20 +2666,18 @@
 		<key>protocol-basic-function-declaration-header</key>
 		<dict>
 			<key>begin</key>
-			<string>\b(?=\w?[\w\s]*func\s+(?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%&lt;&gt;&amp;|\^~.]+)\s*(?:\(|&lt;))</string>
+			<string>(?=\w?[\w\s]*(?:func)\s+\w+)</string>
 			<key>end</key>
-			<string>(?=func|init|subscript|class|optional|var|\}|typealias)</string>
+			<string>(?&lt;=\))</string>
 			<key>name</key>
 			<string>meta.identifier.function.swift</string>
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>include</key>
-					<string>#class-function-storage-modifiers</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#struct-function-storage-modifiers</string>
+					<key>match</key>
+					<string>\b(class)\b</string>
+					<key>name</key>
+					<string>storage.modifier.function.swift</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -3061,6 +3098,8 @@
 				<dict>
 					<key>match</key>
 					<string>(?:[a-zA-Z_\$][a-zA-Z0-9_\$]*)</string>
+					<key>name</key>
+					<string>entity.name.type.swift</string>
 				</dict>
 			</array>
 		</dict>
@@ -3348,6 +3387,10 @@
 					<string>#access-control-modifiers</string>
 				</dict>
 				<dict>
+					<key>include</key>
+					<string>#scoped-variable-storage-modifiers</string>
+				</dict>
+				<dict>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -3358,6 +3401,18 @@
 					</dict>
 					<key>match</key>
 					<string>\b(lazy|static)\b</string>
+				</dict>
+			</array>
+		</dict>
+		<key>stuff-that-needs-a-home</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\bin\b</string>
+					<key>name</key>
+					<string>keyword.other.in.swift</string>
 				</dict>
 			</array>
 		</dict>
@@ -3540,7 +3595,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#simple-type</string>
+					<string>#builtin-types</string>
 				</dict>
 			</array>
 		</dict>
@@ -3565,6 +3620,10 @@
 				<dict>
 					<key>include</key>
 					<string>#type-name</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#simple-type-name</string>
 				</dict>
 			</array>
 		</dict>

@@ -35,6 +35,13 @@ repository:
     begin: ^\s*(public|private|internal|override|final)*\s+(func|(de)?init|subscript|operator)\s+
     end: $
 
+
+  stuff-that-needs-a-home:
+    patterns:
+    - name:  keyword.other.in.swift
+      match: \bin\b
+
+
   values:
     patterns:
     - include: '#builtin-values'
@@ -183,6 +190,7 @@ repository:
     - include: '#expression'
     - include: '#variable-subscript-access'
     - include: '#variable-dot-access'
+    - include: '#stuff-that-needs-a-home'
 
   block:
     patterns:
@@ -263,6 +271,7 @@ repository:
       '1': {name: punctuation.type-specification.prefix.swift}
     patterns:
     - include: '#type-name'
+    - include: '#simple-type-name'
 
   multi-type-specification:
     name: meta.type-specification.multiple.swift
@@ -275,6 +284,7 @@ repository:
     - match: (,)
       name: punctuation.type-specification.multiple.separator.swift
     - include: '#type-name'
+    - include: '#simple-type-name'
 
   protocol-declaration-multi-type-specification:
     name: meta.type-specification.multiple.swift
@@ -398,7 +408,11 @@ repository:
     - include: '#builtin-function-names'
 
     # include type-name because all concrete types' constructors are named after them
-    - include: '#type-name'
+    # - include: '#type-name'
+    - include: '#shorthand-type'
+    - include: '#tuple-type'
+    - include: '#protocol-composition-type'
+    - include: '#generic-type'
 
   builtin-function-names:
     name: support.function.built-in.swift
@@ -425,6 +439,7 @@ repository:
     - include: '#builtin-protocol-types'
     - include: '#builtin-typealiases'
     - include: '#builtin-coregraphics-types'
+    - include: '#builtin-uikit-types'
     - include: '#builtin-spritekit-types'
 
   builtin-class-and-struct-types:
@@ -434,6 +449,10 @@ repository:
   builtin-numeric-types:
     name: support.type.built-in.numeric.swift
     match: \b(Double|Float|(U)?Int(8|16|32|64)?|NSTimeInterval)\b
+
+  builtin-uikit-types:
+    name: support.type.built-in.uikit.swift
+    match: \bUI(TableView(Controller|Delegate|DataSource)?)\b
 
   builtin-coregraphics-types:
     name: support.type.built-in.coregraphics.swift
@@ -465,12 +484,14 @@ repository:
     - include: '#tuple-type'
     - include: '#protocol-composition-type'
     - include: '#generic-type'
-    - include: '#simple-type'
+    # - include: '#simple-type'
+    - include: '#builtin-types'
 
   simple-type-name:
     patterns:
     - include: '#builtin-types'
     - match: (?:[a-zA-Z_\$][a-zA-Z0-9_\$]*)
+      name: entity.name.type.swift
 
   simple-type:
     begin: (?=[a-zA-Z_\$][a-zA-Z0-9_\$]*\b)
@@ -650,13 +671,18 @@ repository:
 
   protocol-basic-function-declaration-header:
     name: meta.identifier.function.swift
-    begin: \b(?=\w?[\w\s]*func\s+(?:\B\$[0-9]+|\b[\w^\d][\w\d]*\b|\B`[\w^\d][\w\d]*`\B|[/=\-+!*%<>&|\^~.]+)\s*(?:\(|<))
-    end: (?=func|init|subscript|class|optional|var|\}|typealias)
+    # begin: \bfunc\b
+    begin: (?=\w?[\w\s]*(?:func)\s+\w+)
+    # begin: (?=\w?[\w\s]*(?:class)\s+\w+)
+    end: (?<=\))
+    # end: (?=(func|init|subscript|class|optional|var|typealias)\b|\})
     patterns:
-    - include: '#class-function-storage-modifiers'
-    - include: '#struct-function-storage-modifiers'
+    - match: \b(class)\b
+      name: storage.modifier.function.swift
     - match: \b(func)\b
       name: storage.type.function.swift
+    # - include: '#class-function-storage-modifiers'
+    # - include: '#struct-function-storage-modifiers'
     - include: '#generic-parameter-list-declaration'
     - include: '#function-parameter-list-declaration'
     - include: '#protocol-function-result'
@@ -1387,6 +1413,7 @@ repository:
     patterns:
     - include: '#complex-access-control-modifiers'
     - include: '#access-control-modifiers'
+    - include: '#scoped-variable-storage-modifiers'
     - match: \b(lazy|class|override)\b
       captures: { '1': { name: storage.modifier.variable.class.swift } }
 
@@ -1394,6 +1421,7 @@ repository:
     patterns:
     - include: '#complex-access-control-modifiers'
     - include: '#access-control-modifiers'
+    - include: '#scoped-variable-storage-modifiers'
     - match: \b(lazy|static)\b
       captures: { '1': { name: storage.modifier.variable.struct.swift } }
 
@@ -1401,6 +1429,7 @@ repository:
     patterns:
     - include: '#complex-access-control-modifiers'
     - include: '#access-control-modifiers'
+    - include: '#scoped-variable-storage-modifiers'
     - match: \b(class|static)\b
       captures: { '1': { name: storage.modifier.variable.extension.swift } }
 
