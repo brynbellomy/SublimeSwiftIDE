@@ -1,0 +1,9 @@
+name: Comments
+scope: source.swift
+settings:
+  shellVariables:
+  - {name: TM_COMMENT_START, value: '// '}
+  - {name: TM_COMMENT_START_2, value: /*}
+  - {name: TM_COMMENT_END_2, value: '*/'}
+  - {name: TM_COMMENT_DISABLE_INDENT_2, value: 'yes'}
+uuid: 562c4b0a-a8e5-4427-be89-03e8425b3adb
